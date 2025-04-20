@@ -1,0 +1,13 @@
+{%  extends "landing.html" %}
+
+{% block title %}Registration{% endblock %}
+{% blcok content %}
+
+<form action="{% url 'gerister' %}" method="post">
+     {% csrf_token %}
+    <label for="name">NAME</label>
+    <input type="text" name="name" placeholder="Enter name">
+    
+</form>
+
+{% endblock %}
