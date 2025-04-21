@@ -1,0 +1,31 @@
+{% extends 'landing.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+
+  <div class="login-container" style="background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); width: 100%; max-width: 400px; text-align: center;">
+    <h2 style="margin-bottom: 25px; color: #333;">Login</h2>
+    
+    <form action="{% url 'logindata' %}" method="post" style="display: flex; flex-direction: column; gap: 15px;">
+      {% csrf_token %}
+      <input type="email" name="email" placeholder="Email" required
+             style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px;">
+             
+      <input type="password" name="password" placeholder="Password" required
+             style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px;">
+             
+      <input type="submit" value="Login"
+             style="padding: 12px; background: #667eea; border: none; border-radius: 6px; color: #fff; font-size: 16px; cursor: pointer; transition: background 0.3s;">
+    </form>
+    
+    <p style="margin-top: 20px; font-size: 14px;">Don't have an account?
+      <a href="{% url 'regis' %}" style="color: #667eea; text-decoration: none;">Register</a>
+    </p>
+  </div>
+  
+ 
+
+  {{msg}}
+  {% endblock %}
+

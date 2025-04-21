@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Document{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     {% load static  %} 
     {% block css %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
 
@@ -14,21 +15,24 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: black;">
 
     {% if userdata %}
-      <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+      <div class="container-fluid"  >
+    <a class="navbar-brand" href="#">FitnessZone</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="color: white;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'home' pk=userdata.id %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'about1' pk=userdata.id %}">about</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'landing' %}">Logout</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,6 +48,9 @@
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
+        <li class="nav-item" style="    margin-left: 518px; border: 1px solid black;">
+          <a class="nav-link active" aria-current="page" href="#">Welcome {{userdata.name}}</a>
+        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -53,7 +60,7 @@
   </div>
 {% else %}
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">FitnessZone</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -63,7 +70,13 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'about' %}">about</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'regis' %}">Registration</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -112,8 +125,84 @@
     <!-- <div class="swiper-pagination"></div> -->
   </div>
 
+  <div style="display: flex; justify-content: center; gap: 20px; padding: 40px; background-color: #f2f2f2; flex-wrap: wrap;">
+  <!-- Card 1 -->
+  <div style="background-color: white; width: 300px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+    <img src="{% static 'image/team-3.jpg' %}" alt="Workout Plan" style="width: 100%; border-radius: 8px;">
+    <h3 style="margin-top: 15px; color: #333;">Workout Plans</h3>
+    <p style="color: #666;">Customized routines for fat loss, muscle gain & endurance training.</p>
+    <a href="#" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #ff4d4d; color: white; border-radius: 5px; text-decoration: none;">View Plans</a>
+  </div>
+
+  <!-- Card 2 -->
+  <div style="background-color: white; width: 300px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+    <img src="{% static 'image/team-2.jpg' %}" alt="Certified Trainers" style="width: 100%; border-radius: 8px;">
+    <h3 style="margin-top: 15px; color: #333;">Certified Trainers</h3>
+    <p style="color: #666;">Train with professionals who guide you toward your fitness goals.</p>
+    <a href="#" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #4CAF50; color: white; border-radius: 5px; text-decoration: none;">Meet Trainers</a>
+  </div>
+
+  <!-- Card 3 -->
+  <div style="background-color: white; width: 300px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+    <img src="{% static 'image/team-4.jpg' %} " alt="Nutrition Guide" style="width: 100%; border-radius: 8px;">
+    <h3 style="margin-top: 15px; color: #333;">Nutrition Plans</h3>
+    <p style="color: #666;">Get meal plans and nutrition advice tailored to your fitness routine.</p>
+    <a href="#" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #007BFF; color: white; border-radius: 5px; text-decoration: none;">Get Guide</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 
     {% endblock %}
+
+
+
+
+      <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>FitnessZone</h3>
+      <p>Your journey to a healthier life begins here. Join our fitness community and stay motivated!</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#plans">Plans</a></li>
+        <li><a href="#trainers">Trainers</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#login">Login</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Contact Us</h4>
+      <p><i class="fas fa-envelope"></i> support@fitnesszone.com</p>
+      <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+      <p><i class="fas fa-location-dot"></i> Bhopal, Madhya Pradesh</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  
+</footer>
 
       <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
  <script>
