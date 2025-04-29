@@ -1,0 +1,34 @@
+ {% extends "landing.html" %}
+ {% block title %}Profile page {% endblock %}
+ {% load static %}
+ {% block css %} <link rel="stylesheet" href="{% static 'css/profile.css' %}"> {% endblock%}
+ 
+ {% block content %}
+ <center>
+   <div class="profile-card" style="
+  margin-top: 80px;
+  margin-bottom: 80px;">
+    <div class="profile-image">
+   
+      <img src="{{userdata.image.url}}" alt="Profile Picture" />
+    </div>
+    <h2 class="profile-name">{{userdata.name}}</h2>
+    
+    
+    <div class="profile-info">
+      <p><strong>Email : </strong> {{userdata.email}}</p>
+      <p><strong>phone no : </strong> {{userdata.contact}}</p>
+    </div>
+    <div class="profile-info">
+      <p><strong>Age : </strong> {{userdata.age}}</p>
+      <p><strong>Gender : </strong> {{userdata.gender}}</p>
+    </div>
+
+    <div class="social-links">
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+      <a href="#">Portfolio</a>
+    </div>
+  </div>
+</center>
+{% endblock  %}

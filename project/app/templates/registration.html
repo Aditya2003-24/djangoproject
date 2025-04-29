@@ -8,7 +8,7 @@
 
 {{msg}}
 
-
+<div style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
     <div class="form-container">
     <h2>Join Our Gym</h2>
     <form action="{% url 'registion' %}" method="POST" enctype="multipart/form-data">
@@ -52,6 +52,10 @@
           <option value="yearly">Yearly - ₹10,000</option>
         </select>
       </div>
+      <div class="form-group">
+        <label for="file">profile photo</label>
+        <input type="file" id="file"  name="file" required>
+      </div>
 
       <div class="form-group">
         <label for="message">Any Health Conditions?</label>
@@ -70,6 +74,8 @@
 
       <button type="submit">Register Now</button>
     </form>
+  </div>
+
   </div>
     
 

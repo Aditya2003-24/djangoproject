@@ -2,6 +2,52 @@ from django.shortcuts import render
 from .models import Fitness
 
 # Create your views here.
+def home(request,pk):
+    userdata = Fitness.objects.get(id=pk)
+    userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                   
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
+    return render(request,'landing.html',{'userdata':userdata})
+
+def about1(request,pk):
+    userdata = Fitness.objects.get(id=pk)
+    userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
+    return render(request,'about.html',{'userdata':userdata})
+
+def profile(request,pk):
+    userdata = Fitness.objects.get(id=pk)
+    userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+               }
+    return render(request,'profile.html',{'userdata':userdata})
+    
 def landing(request):
     return render(request,'landing.html')
 def regis(request):
@@ -19,6 +65,7 @@ def registion(request):
     age=request.POST.get('age')
     # subscribe=request.POST.getlist('subscribe')
     gender=request.POST.get('gender')
+    image=request.FILES.get('file')
     password=request.POST.get('password')
     cpassword=request.POST.get('cpassword')
     plan=request.POST.get('plan')
@@ -31,7 +78,7 @@ def registion(request):
         return render(request,'registration.html',{'key':msg})
     else:
         if password==cpassword:
-            Fitness.objects.create(Student_name=username,Student_email=email,Student_contact=phone,Student_message=detail,Student_age=age,Student_plan=plan,Student_Gender=gender,Student_Password=password )
+            Fitness.objects.create(Student_name=username,Student_email=email,Student_contact=phone,Student_message=detail,Student_age=age,Student_file=image,Student_plan=plan,Student_Gender=gender,Student_Password=password )
             msg='gegistration done'
             return render(request,'login.html',{'keyy':msg})
         else:
@@ -57,6 +104,7 @@ def logindata(request):
                     "dis":userdata.Student_message,
                     "age":userdata.Student_age,
                     "email":userdata.Student_email,
+                    "image":userdata.Student_file,
                     # "image":userdata.Student_Image,
                     # "file":userdata.Student_Resume,
                     "plan":userdata.Student_plan,

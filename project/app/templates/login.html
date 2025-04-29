@@ -3,8 +3,8 @@
 
 {% block content %}
 
-
-  <div class="login-container" style="background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); width: 100%; max-width: 400px; text-align: center;">
+<center>
+  <div class="login-container" style="margin-bottom:40px; margin-top:40px; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); width: 100%; max-width: 400px; text-align: center;">
     <h2 style="margin-bottom: 25px; color: #333;">Login</h2>
     
     <form action="{% url 'logindata' %}" method="post" style="display: flex; flex-direction: column; gap: 15px;">
@@ -23,6 +23,9 @@
       <a href="{% url 'regis' %}" style="color: #667eea; text-decoration: none;">Register</a>
     </p>
   </div>
+  </div>
+
+  </center>
   
  
 
