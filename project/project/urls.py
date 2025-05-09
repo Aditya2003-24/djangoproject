@@ -31,5 +31,11 @@ urlpatterns = [
     path('about1/<int:pk>',views.about1,name='about1'),
     path('home/<int:pk>',views.home,name='home'),
     path('profile/<int:pk>',views.profile,name='profile'),
+    path('dashbord/<int:pk>',views.dashbord,name='dashbord'),
+    path('first/<int:pk>',views.first,name='first'),
+    path('second/',views.second,name='second'),
+    path('third/',views.third,name='third'),
+    path('fourth/',views.fourth,name='fourth'),
+    path('five/',views.five,name='five'),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

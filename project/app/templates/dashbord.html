@@ -1,0 +1,39 @@
+{% extends 'landing.html' %}
+{% block title %}dashbord{% endblock %}
+
+{% block content %}
+
+    <a href="{% url 'first' pk=userdata.id %}">fast 5</a>
+    <a href="{% url 'second' %}">last 5</a>
+    <a href="{% url 'third' %}">all name by order</a>
+    <a href="{% url 'fourth' %}">all name by disorder</a>
+    <a href="{% url 'five' %}">all data</a>
+
+    {% if data %}
+     
+        <table border="1">
+            <tr>
+            
+                <th>S.NO</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>CONTACT</th>
+                <th>CITY</th>
+            </tr>
+            
+                {% for i in data %}
+                <tr>
+                <td>{{forloop.counter0}}</td>
+                <td>{{i.stu_name}}</td>
+                <td>{{i.stu_email}}</td>
+                <td>{{i.stu_contact}}</td>
+                <td>{{i.stu_city}}</td>
+                </tr>
+                {% endfor %}
+            
+            {% else %}
+
+        </table>
+    {% endif %}
+  
+{% endblock %}

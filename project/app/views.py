@@ -1,7 +1,60 @@
 from django.shortcuts import render
-from .models import Fitness
+from .models import *
 
 # Create your views here.
+
+def dashbord(request,pk):
+     userdata = Fitness.objects.get(id=pk)
+     userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                   
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
+     return render(request,'dashbord.html',{'userdata':userdata})
+    
+def first(request,pk):
+     userdata = Fitness.objects.get(id=pk)
+     userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                   
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
+    
+     data=Student.objects.all()[0:5]
+     return render(request,'dashbord.html',{'data':data,'userdata':userdata})
+
+def second(request):
+    
+    data=Student.objects.order_by('-id')[0:5]
+    return render(request,'dashbord.html',{'data':data})
+
+def third(request):
+    data=Student.objects.order_by('stu_name')
+    return render(request,'landing.html',{'data':data})
+
+def fourth(request):
+    data=Student.objects.order_by('-stu_name')
+    return render(request,'landing.html',{'data':data})
+
+def five(request):
+    data=Student.objects.all()
+    return render(request,'landing.html',{'data':data})
+
+
 def home(request,pk):
     userdata = Fitness.objects.get(id=pk)
     userdata = {
