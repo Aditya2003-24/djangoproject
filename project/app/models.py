@@ -8,6 +8,7 @@ class Student(models.Model):
     stu_contact=models.IntegerField()
     stu_city=models.CharField(max_length=50)
 
+
 class Fitness(models.Model):
     Student_name=models.CharField(max_length=50)
     Student_email=models.EmailField()

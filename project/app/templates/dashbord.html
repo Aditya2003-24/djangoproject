@@ -1,39 +1,80 @@
 {% extends 'landing.html' %}
 {% block title %}dashbord{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/table.css' %}">
+
+ {% endblock %}
 
 {% block content %}
+<div style="margin-top: 20px;">
 
-    <a href="{% url 'first' pk=userdata.id %}">fast 5</a>
-    <a href="{% url 'second' %}">last 5</a>
-    <a href="{% url 'third' %}">all name by order</a>
-    <a href="{% url 'fourth' %}">all name by disorder</a>
-    <a href="{% url 'five' %}">all data</a>
+    <a class="unkar" href="{% url 'first' pk=userdata.id %}">fast 5</a>
+    <a class="unkar" href="{% url 'second' pk=userdata.id %}">last 5</a>
+    <a class="unkar" href="{% url 'third' pk=userdata.id %}">all name by order</a>
+    <a class="unkar" href="{% url 'fourth' pk=userdata.id %}">all name by disorder</a>
+    <a class="unkar" href="{% url 'five' pk=userdata.id %}">all data</a>
 
-    {% if data %}
+</div>
+
+
+{% if editdata %}
+
+<form action="{% url 'edit_data' pk=userdata.id pk2=editdata.id %}" method='POST'>
+
+    {% csrf_token %}
+    <input type="text" name="name" value="{{editdata.stu_name}}"><br>
+    <input type="text" name="email" value="{{editdata.stu_email}}"><br>
+    <input type="text" name="contact" value="{{editdata.stu_contact}}"><br>
+    <input type="text" name="city" value="{{editdata.stu_city}}"><br>
+    <input type="submit" value="update">
+
+
+</form>
+
+{% else %}
+
+{% if data %} 
+<div>
+   
      
         <table border="1">
             <tr>
             
                 <th>S.NO</th>
+                <th>ID</th>
                 <th>NAME</th>
                 <th>EMAIL</th>
                 <th>CONTACT</th>
                 <th>CITY</th>
+                <th>EDIT</th>
+                <th>DELETE</th>
             </tr>
             
                 {% for i in data %}
                 <tr>
-                <td>{{forloop.counter0}}</td>
+                <!-- <td>{{forloop.counter0}}</td> -->
+                <td>{{forloop.counter}}</td>
+
+                <td>{{i.id}}</td>
                 <td>{{i.stu_name}}</td>
                 <td>{{i.stu_email}}</td>
                 <td>{{i.stu_contact}}</td>
                 <td>{{i.stu_city}}</td>
+                <td><button><a href="{% url 'edit' pk=userdata.id pk2=i.id %}">EDIT</a></button></td>
+                <td><button><a href="{% url 'delete' pk=userdata.id pk2=i.id %}">DELETE</a></button></td>
                 </tr>
                 {% endfor %}
             
-            {% else %}
+            
 
         </table>
-    {% endif %}
+    </div>
+        {% else %}
+   
+
+{% endif %} 
+
+{% endif %}
   
 {% endblock %}

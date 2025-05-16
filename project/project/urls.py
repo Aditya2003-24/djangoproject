@@ -33,9 +33,12 @@ urlpatterns = [
     path('profile/<int:pk>',views.profile,name='profile'),
     path('dashbord/<int:pk>',views.dashbord,name='dashbord'),
     path('first/<int:pk>',views.first,name='first'),
-    path('second/',views.second,name='second'),
-    path('third/',views.third,name='third'),
-    path('fourth/',views.fourth,name='fourth'),
-    path('five/',views.five,name='five'),
+    path('second/<int:pk>',views.second,name='second'),
+    path('third/<int:pk>',views.third,name='third'),
+    path('fourth/<int:pk>',views.fourth,name='fourth'),
+    path('five/<int:pk>',views.five,name='five'),
+    path('edit/<int:pk>/<int:pk2>/',views.edit,name='edit'),
+    path('delete/<int:pk>/<int:pk2>/',views.delete,name='delete'),
+    path('edit_data/<int:pk>/<int:pk2>/',views.edit_data,name='edit_data'),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

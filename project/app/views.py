@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 
 # Create your views here.
@@ -13,7 +13,6 @@ def dashbord(request,pk):
                     "age":userdata.Student_age,
                     "email":userdata.Student_email,
                     'image':userdata.Student_file,
-                   
                     "gender":userdata.Student_Gender,
                     "password":userdata.Student_Password,
                 }
@@ -37,22 +36,141 @@ def first(request,pk):
      data=Student.objects.all()[0:5]
      return render(request,'dashbord.html',{'data':data,'userdata':userdata})
 
-def second(request):
+def second(request,pk):
+    userdata = Fitness.objects.get(id=pk)
+    userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                   
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
     
     data=Student.objects.order_by('-id')[0:5]
-    return render(request,'dashbord.html',{'data':data})
+    return render(request,'dashbord.html',{'data':data,'userdata':userdata})
 
-def third(request):
+def third(request,pk):
+    userdata = Fitness.objects.get(id=pk)
+    userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                   
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
     data=Student.objects.order_by('stu_name')
-    return render(request,'landing.html',{'data':data})
+    return render(request,'dashbord.html',{'data':data,'userdata':userdata})
 
-def fourth(request):
+def fourth(request,pk):
+    userdata = Fitness.objects.get(id=pk)
+    userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                   
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
     data=Student.objects.order_by('-stu_name')
-    return render(request,'landing.html',{'data':data})
+    return render(request,'dashbord.html',{'data':data,'userdata':userdata})
 
-def five(request):
+def five(request,pk):
+    userdata = Fitness.objects.get(id=pk)
+    userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                   
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
     data=Student.objects.all()
-    return render(request,'landing.html',{'data':data})
+    return render(request,'dashbord.html',{'data':data,'userdata':userdata})
+
+def edit(request,pk,pk2):
+    print(pk)
+    print(pk2)
+    userdata=Fitness.objects.get(id=pk)
+    userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                   
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
+    editdata=Student.objects.get(id=pk2)
+    return render(request,'dashbord.html',{'userdata':userdata,'editdata':editdata})
+
+def delete(request,pk,pk2):
+   
+    delete_data=Student.objects.get(id=pk2)
+    delete_data.delete()
+    userdata=Fitness.objects.get(id=pk)
+    userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
+
+    # return redirect('five',id=pk2)
+    return render(request,'dashbord.html',{'userdata':userdata})
+
+def edit_data(request,pk,pk2):
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    contact = request.POST.get('contact')
+    city = request.POST.get('city')
+    if request.method=='POST':
+        edit=Student.objects.get(pk=pk2)
+        edit.stu_name=name
+        edit.stu_email=email
+        edit.stu_contact=contact
+        edit.stu_city=city
+        edit.save()
+        userdata=Fitness.objects.get(id=pk)
+        userdata = {
+                    "id":userdata.id,
+                    "name":userdata.Student_name,
+                    "contact":userdata.Student_contact,
+                    "message":userdata.Student_message,
+                    "age":userdata.Student_age,
+                    "email":userdata.Student_email,
+                    'image':userdata.Student_file,
+                    "gender":userdata.Student_Gender,
+                    "password":userdata.Student_Password,
+                }
+        return render(request,'dashbord.html',{'userdata':userdata})
+
+
 
 
 def home(request,pk):
